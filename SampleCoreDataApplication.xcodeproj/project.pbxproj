@@ -27,9 +27,11 @@
 		671D3D94193DA418000ACF1C /* CDDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 671D3D93193DA418000ACF1C /* CDDatabaseManager.m */; };
 		671D3D98193DA41F000ACF1C /* CDArticleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 671D3D97193DA41F000ACF1C /* CDArticleListViewController.m */; };
 		672C0252193F32CE004A9CFA /* CDTweetUserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 672C0251193F32CE004A9CFA /* CDTweetUserDetails.m */; };
-		672C0256193F3596004A9CFA /* CDSaveTweetUserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 672C0255193F3596004A9CFA /* CDSaveTweetUserDetails.m */; };
+		672C0256193F3596004A9CFA /* CDSaveUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 672C0255193F3596004A9CFA /* CDSaveUserInfo.m */; };
 		67684B26193DB8D000AEE257 /* CDSaveTweetDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 67684B25193DB8D000AEE257 /* CDSaveTweetDetails.m */; };
 		67684B29193DB8ED00AEE257 /* CDTweetDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 67684B28193DB8ED00AEE257 /* CDTweetDetails.m */; };
+		67F91F5F1941993700167CFF /* CDSaveTweetAndReTweetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F91F5E1941993700167CFF /* CDSaveTweetAndReTweetInfo.m */; };
+		67F91F651941A33D00167CFF /* CDSaveFollowerDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F91F641941A33D00167CFF /* CDSaveFollowerDetails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,12 +72,16 @@
 		671D3D97193DA41F000ACF1C /* CDArticleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDArticleListViewController.m; sourceTree = "<group>"; };
 		672C0250193F32CE004A9CFA /* CDTweetUserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTweetUserDetails.h; sourceTree = "<group>"; };
 		672C0251193F32CE004A9CFA /* CDTweetUserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTweetUserDetails.m; sourceTree = "<group>"; };
-		672C0254193F3596004A9CFA /* CDSaveTweetUserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSaveTweetUserDetails.h; sourceTree = "<group>"; };
-		672C0255193F3596004A9CFA /* CDSaveTweetUserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSaveTweetUserDetails.m; sourceTree = "<group>"; };
+		672C0254193F3596004A9CFA /* CDSaveUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSaveUserInfo.h; sourceTree = "<group>"; };
+		672C0255193F3596004A9CFA /* CDSaveUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSaveUserInfo.m; sourceTree = "<group>"; };
 		67684B24193DB8D000AEE257 /* CDSaveTweetDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSaveTweetDetails.h; sourceTree = "<group>"; };
 		67684B25193DB8D000AEE257 /* CDSaveTweetDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSaveTweetDetails.m; sourceTree = "<group>"; };
 		67684B27193DB8ED00AEE257 /* CDTweetDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTweetDetails.h; sourceTree = "<group>"; };
 		67684B28193DB8ED00AEE257 /* CDTweetDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTweetDetails.m; sourceTree = "<group>"; };
+		67F91F5D1941993700167CFF /* CDSaveTweetAndReTweetInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSaveTweetAndReTweetInfo.h; sourceTree = "<group>"; };
+		67F91F5E1941993700167CFF /* CDSaveTweetAndReTweetInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSaveTweetAndReTweetInfo.m; sourceTree = "<group>"; };
+		67F91F631941A33D00167CFF /* CDSaveFollowerDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSaveFollowerDetails.h; sourceTree = "<group>"; };
+		67F91F641941A33D00167CFF /* CDSaveFollowerDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSaveFollowerDetails.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +181,7 @@
 		671D3D80193DA3E7000ACF1C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				67F91F621941A31800167CFF /* SaveFollowersDetails */,
 				67684B23193DB87F00AEE257 /* SaveTweetDetails */,
 				672C0253193F3576004A9CFA /* SaveTweetUserDetails */,
 				672C024F193F307F004A9CFA /* TweetUserDetails */,
@@ -272,8 +279,9 @@
 		672C0253193F3576004A9CFA /* SaveTweetUserDetails */ = {
 			isa = PBXGroup;
 			children = (
-				672C0254193F3596004A9CFA /* CDSaveTweetUserDetails.h */,
-				672C0255193F3596004A9CFA /* CDSaveTweetUserDetails.m */,
+				67CEF3341941980100C25E04 /* SaveTweetAndReTweet */,
+				672C0254193F3596004A9CFA /* CDSaveUserInfo.h */,
+				672C0255193F3596004A9CFA /* CDSaveUserInfo.m */,
 			);
 			path = SaveTweetUserDetails;
 			sourceTree = "<group>";
@@ -285,6 +293,24 @@
 				67684B25193DB8D000AEE257 /* CDSaveTweetDetails.m */,
 			);
 			path = SaveTweetDetails;
+			sourceTree = "<group>";
+		};
+		67CEF3341941980100C25E04 /* SaveTweetAndReTweet */ = {
+			isa = PBXGroup;
+			children = (
+				67F91F5D1941993700167CFF /* CDSaveTweetAndReTweetInfo.h */,
+				67F91F5E1941993700167CFF /* CDSaveTweetAndReTweetInfo.m */,
+			);
+			path = SaveTweetAndReTweet;
+			sourceTree = "<group>";
+		};
+		67F91F621941A31800167CFF /* SaveFollowersDetails */ = {
+			isa = PBXGroup;
+			children = (
+				67F91F631941A33D00167CFF /* CDSaveFollowerDetails.h */,
+				67F91F641941A33D00167CFF /* CDSaveFollowerDetails.m */,
+			);
+			path = SaveFollowersDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,7 +412,9 @@
 				67684B29193DB8ED00AEE257 /* CDTweetDetails.m in Sources */,
 				67684B26193DB8D000AEE257 /* CDSaveTweetDetails.m in Sources */,
 				671D3D94193DA418000ACF1C /* CDDatabaseManager.m in Sources */,
-				672C0256193F3596004A9CFA /* CDSaveTweetUserDetails.m in Sources */,
+				67F91F5F1941993700167CFF /* CDSaveTweetAndReTweetInfo.m in Sources */,
+				67F91F651941A33D00167CFF /* CDSaveFollowerDetails.m in Sources */,
+				672C0256193F3596004A9CFA /* CDSaveUserInfo.m in Sources */,
 				671D3D59193DA35B000ACF1C /* main.m in Sources */,
 				671D3D98193DA41F000ACF1C /* CDArticleListViewController.m in Sources */,
 				671D3D60193DA35B000ACF1C /* SampleCoreDataApplication.xcdatamodeld in Sources */,

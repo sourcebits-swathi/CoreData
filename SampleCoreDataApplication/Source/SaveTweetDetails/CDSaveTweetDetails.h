@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-@class CDSaveTweetUserDetails;
+@class CDSaveTweetAndReTweetInfo;
 
 
 @interface CDSaveTweetDetails : NSManagedObject
@@ -34,5 +34,5 @@
 @property (nonatomic,retain) NSString *retweeted;
 @property (nonatomic,retain) NSString *text;
 @property (nonatomic,retain) NSString *truncated;
-@property (nonatomic,retain)CDSaveTweetUserDetails *tweetuserinfo;
+@property (nonatomic,retain)CDSaveTweetAndReTweetInfo *tweetuserinfo;
 @end

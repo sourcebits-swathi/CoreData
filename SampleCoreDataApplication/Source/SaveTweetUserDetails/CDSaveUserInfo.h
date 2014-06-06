@@ -7,11 +7,12 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "CDSaveTweetDetails.h"
+#import "CDSaveUserInfo.h"
 
-@class CDSaveTweetDetails;
+@class CDSaveFollowerDetails;
 
-@interface CDSaveTweetUserDetails : NSManagedObject
+
+@interface CDSaveUserInfo : NSManagedObject
 
 @property (nonatomic,assign) BOOL contributors_enabled;
 @property (nonatomic,retain) NSString *created_at;
@@ -26,7 +27,6 @@
 @property (nonatomic,assign) BOOL geo_enabled;
 @property (nonatomic,retain) NSString *userid;
 @property (nonatomic,retain) NSString *userid_str;
-@property (nonatomic,assign) BOOL is_translation_enabled;
 @property (nonatomic,assign) BOOL  is_translator;
 @property (nonatomic,retain) NSString *lang;
 @property (nonatomic,retain) NSString *listed_count;
@@ -51,6 +51,6 @@
 @property (nonatomic,retain) NSString *url;
 @property (nonatomic,retain) NSString *utc_offset;
 @property (nonatomic,assign) BOOL verified;
-@property (nonatomic,retain) CDSaveTweetDetails *generaltweetinfo;
+@property (nonatomic,retain) CDSaveFollowerDetails *followers;
 
 @end

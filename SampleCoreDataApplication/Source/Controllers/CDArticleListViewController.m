@@ -14,6 +14,7 @@
 {
     UITableViewCell *Cell;
 
+    NSArray *arrayOfAccounts;
 }
 
 @end
@@ -33,15 +34,26 @@
 {
     [super viewDidLoad];
     
+    [self authenticateUserAccount];
+    
 	// Do any additional setup after loading the view.
+}
+
+#pragma mark -
+#pragma mark - Get followers
+
+- (IBAction)reterieveFollowersAndSaveAction:(id)sender
+{
+    [[CDWebEngine sharedEngine]getfollowersFromTwitter:[arrayOfAccounts lastObject]];
+    
 }
 
 #pragma mark-
 #pragma mark - Authenticate Button Action
 
-- (IBAction)authenticateAndReterieveAndSaveIntoCoreDataButtonAction:(id)sender {
+- (IBAction)ReterieveArticlesAndSaveIntoCoreDataButtonAction:(id)sender {
     
-    [self authenticateUserAccount];
+    [[CDWebEngine sharedEngine]getArticlesFromTwitter:[arrayOfAccounts lastObject]];
 
 }
 
@@ -66,25 +78,25 @@
          
          else if (granted == YES)
          {
+             arrayOfAccounts = [account accountsWithAccountType:accountType];
+
              NSLog(@"permission granted");
 
-             NSArray *arrayOfAccounts = [account
-                                         accountsWithAccountType:accountType];
              if (arrayOfAccounts.count == 0) {
                  
                  UIAlertView *alertview = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"No accounts are configured in device" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                  
                  [alertview performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+                 
+                 
              }
              
-             else
-             {
-             [[CDWebEngine sharedEngine]getArticlesFromTwitter:[arrayOfAccounts lastObject]];
-             }
              
          }
          
      }];
+    
+
 }
 
 

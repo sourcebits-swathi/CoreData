@@ -13,4 +13,5 @@
 
 +(CDWebEngine *)sharedEngine;
 -(void)getArticlesFromTwitter:(ACAccount *)lobjTwitterAccount;
+-(void)getfollowersFromTwitter:(ACAccount *)lobjTwitterAccount;
 @end

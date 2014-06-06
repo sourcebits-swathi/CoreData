@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Followers" representedClassName="CDSaveFollowerDetails" syncable="YES"/>
+    <entity name="TweetAndReTweetUserInfo" representedClassName="CDSaveTweetAndReTweetInfo" parentEntity="UserInfo" syncable="YES">
+        <attribute name="is_translation_enabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="generaltweetinfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TweetInfo" inverseName="tweetuserinfo" inverseEntity="TweetInfo" syncable="YES"/>
+    </entity>
     <entity name="TweetInfo" representedClassName="CDSaveTweetDetails" syncable="YES">
         <attribute name="contributors" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coordinates" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,9 +27,9 @@
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="truncated" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tweetuserinfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TweetUserInfo" inverseName="generaltweetinfo" inverseEntity="TweetUserInfo" syncable="YES"/>
+        <relationship name="tweetuserinfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TweetAndReTweetUserInfo" inverseName="generaltweetinfo" inverseEntity="TweetAndReTweetUserInfo" syncable="YES"/>
     </entity>
-    <entity name="TweetUserInfo" representedClassName="CDSaveTweetUserDetails" syncable="YES">
+    <entity name="UserInfo" representedClassName="CDSaveUserInfo" syncable="YES">
         <attribute name="contributors_enabled" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="created_at" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="default_profile" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -36,7 +41,6 @@
         <attribute name="following" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="friends_count" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="geo_enabled" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="is_translation_enabled" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="is_translator" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lang" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="listed_count" optional="YES" attributeType="String" syncable="YES"/>
@@ -63,10 +67,11 @@
         <attribute name="userid_str" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="utc_offset" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="verified" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="generaltweetinfo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TweetInfo" inverseName="tweetuserinfo" inverseEntity="TweetInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TweetInfo" positionX="-2313" positionY="-972" width="128" height="373"/>
-        <element name="TweetUserInfo" positionX="-1701" positionY="-1359" width="128" height="645"/>
+        <element name="Followers" positionX="-1836" positionY="-1195" width="128" height="43"/>
+        <element name="TweetAndReTweetUserInfo" positionX="-1845" positionY="-1431" width="128" height="73"/>
+        <element name="TweetInfo" positionX="-2106" positionY="-1512" width="128" height="373"/>
+        <element name="UserInfo" positionX="-1521" positionY="-1603" width="128" height="598"/>
     </elements>
 </model>

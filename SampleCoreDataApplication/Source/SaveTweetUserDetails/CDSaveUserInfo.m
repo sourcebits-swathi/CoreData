@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Swathi Tata. All rights reserved.
 //
 
-#import "CDSaveTweetUserDetails.h"
+#import "CDSaveUserInfo.h"
 
-@implementation CDSaveTweetUserDetails
+@implementation CDSaveUserInfo
 
 @dynamic  contributors_enabled;
 @dynamic  created_at;
@@ -23,7 +23,6 @@
 @dynamic  geo_enabled;
 @dynamic  userid;
 @dynamic  userid_str;
-@dynamic  is_translation_enabled;
 @dynamic  is_translator;
 @dynamic  lang;
 @dynamic  listed_count;
@@ -48,5 +47,5 @@
 @dynamic  url;
 @dynamic  utc_offset;
 @dynamic   verified;
-@dynamic generaltweetinfo;
+@dynamic followers;
 @end

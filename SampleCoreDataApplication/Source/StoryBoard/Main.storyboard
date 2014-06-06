@@ -24,12 +24,24 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="authenticateAndReterieveAndSaveIntoCoreDataButtonAction:" destination="kTC-1L-70v" eventType="touchUpInside" id="6GN-gM-Klg"/>
+                                    <action selector="ReterieveArticlesAndSaveIntoCoreDataButtonAction:" destination="kTC-1L-70v" eventType="touchUpInside" id="9wu-gh-m6D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hfn-5c-cpr">
+                                <rect key="frame" x="80" y="313" width="161" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="GetFollowers And Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="reterieveFollowersAndSaveAction:" destination="kTC-1L-70v" eventType="touchUpInside" id="lsg-hI-ZG9"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Hfn-5c-cpr" firstAttribute="top" secondItem="8n3-wc-Iux" secondAttribute="bottom" constant="14" id="5sW-2J-cIm"/>
+                            <constraint firstItem="Hfn-5c-cpr" firstAttribute="centerX" secondItem="8n3-wc-Iux" secondAttribute="centerX" id="Yrr-3S-Sx9"/>
                             <constraint firstAttribute="centerX" secondItem="8n3-wc-Iux" secondAttribute="centerX" id="qFV-bC-m8T"/>
                             <constraint firstAttribute="centerY" secondItem="8n3-wc-Iux" secondAttribute="centerY" id="tym-BL-G12"/>
                         </constraints>

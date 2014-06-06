@@ -19,6 +19,7 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(void)savingAllTweetDeatils:(NSMutableArray *)lobjTweetDetails AndTweetUserDetails:(NSMutableArray *)lobjTweetUserDetails;
+-(void)savingFollowerDeatails:(NSMutableArray *)lobjfollowerDetails;
 //-(void)savingTweetUserDeatils:(NSMutableArray *)lobjTweetUserDetails;
 
 @end

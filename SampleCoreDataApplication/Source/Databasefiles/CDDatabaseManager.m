@@ -10,8 +10,9 @@
 #import "CDTweetDetails.h"
 #import "CDSaveTweetDetails.h"
 #import "CDTweetUserDetails.h"
-#import "CDSaveTweetUserDetails.h"
-
+#import "CDSaveTweetAndReTweetInfo.h"
+#import "CDSaveUserInfo.h"
+#import "CDSaveFollowerDetails.h"
 @implementation CDDatabaseManager
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -145,7 +146,7 @@
         
         CDTweetDetails *tweetDetail = [lobjTweetDetails objectAtIndex:i];
         CDTweetUserDetails *tweetUserDetail = [lobjTweetUserDetails objectAtIndex:i];
-        
+    
         CDSaveTweetDetails *saveTweetDetail =[NSEntityDescription insertNewObjectForEntityForName:@"TweetInfo"
                                                                            inManagedObjectContext:context];
         saveTweetDetail.contributors = tweetDetail.contributors;
@@ -170,49 +171,52 @@
         saveTweetDetail.retweeted = tweetDetail.retweeted;
         saveTweetDetail.truncated = tweetDetail.truncated;
         
-        CDSaveTweetUserDetails *saveTweetUserDetail =[NSEntityDescription insertNewObjectForEntityForName:@"TweetUserInfo"
+//Saving TweetUserDetails
+        
+        CDSaveTweetAndReTweetInfo *saveTweetAndRetweetInfo =[NSEntityDescription insertNewObjectForEntityForName:@"TweetAndReTweetUserInfo"
                                                                                    inManagedObjectContext:context];
-        saveTweetUserDetail.contributors_enabled = tweetUserDetail.contributors_enabled;
-        saveTweetUserDetail.created_at= tweetUserDetail.created_at;
-        saveTweetUserDetail.default_profile= tweetUserDetail.default_profile;
-        saveTweetUserDetail.default_profile_image= tweetUserDetail.default_profile_image;
-        saveTweetUserDetail.description_tweet= tweetUserDetail.description_tweet;
-        saveTweetUserDetail.favourites_count= [NSString stringWithFormat:@"%@",tweetUserDetail.favourites_count];
-        saveTweetUserDetail.follow_request_sent= tweetUserDetail.follow_request_sent;
-        saveTweetUserDetail. followers_count= [NSString stringWithFormat:@"%@",tweetUserDetail.followers_count];
-        saveTweetUserDetail.following= tweetUserDetail.following;
-        saveTweetUserDetail.friends_count= [NSString stringWithFormat:@"%@",tweetUserDetail.friends_count];
-        saveTweetUserDetail.geo_enabled= tweetUserDetail.geo_enabled;
-        saveTweetUserDetail.userid= [NSString stringWithFormat:@"%@",tweetUserDetail.userid];
-        saveTweetUserDetail.userid_str= tweetUserDetail.userid_str;
-        saveTweetUserDetail.is_translation_enabled= tweetUserDetail.is_translation_enabled;
-        saveTweetUserDetail.is_translator= tweetUserDetail.is_translator;
-        saveTweetUserDetail.lang= tweetUserDetail.lang;
-        saveTweetUserDetail.listed_count= tweetUserDetail.listed_count;
-        saveTweetUserDetail.location= tweetUserDetail.location;
-        saveTweetUserDetail.name= tweetUserDetail.name;
-        saveTweetUserDetail.notifications= tweetUserDetail.notifications;
-        saveTweetUserDetail.profile_background_color= tweetUserDetail.profile_background_color;
-        saveTweetUserDetail.profile_background_image_url= tweetUserDetail.profile_background_image_url;
-        saveTweetUserDetail.profile_background_image_url_https= tweetUserDetail.profile_background_image_url_https;
-        saveTweetUserDetail.profile_background_tile= tweetUserDetail.profile_background_tile;
-        saveTweetUserDetail.profile_image_url= tweetUserDetail.profile_image_url;
-        saveTweetUserDetail.profile_image_url_https= tweetUserDetail.profile_image_url_https;
-        saveTweetUserDetail.profile_link_color= tweetUserDetail.profile_link_color;
-        saveTweetUserDetail.profile_sidebar_border_color= tweetUserDetail.profile_sidebar_border_color;
-        saveTweetUserDetail.profile_sidebar_fill_color= tweetUserDetail.profile_sidebar_fill_color;
-        saveTweetUserDetail.profile_text_color= tweetUserDetail.profile_text_color;
-        saveTweetUserDetail.profile_use_background_image= tweetUserDetail.profile_use_background_image;
-        saveTweetUserDetail.protected_user= tweetUserDetail.protected_user;
-        saveTweetUserDetail.screen_name= tweetUserDetail.screen_name;
-        saveTweetUserDetail.statuses_count= tweetUserDetail.statuses_count;
-        saveTweetUserDetail.time_zone= tweetUserDetail.time_zone;
-        saveTweetUserDetail.url= tweetUserDetail.url;
-        saveTweetUserDetail.utc_offset= tweetUserDetail.utc_offset;
-        saveTweetUserDetail. verified= tweetUserDetail.verified;
+        
+        saveTweetAndRetweetInfo.contributors_enabled = tweetUserDetail.contributors_enabled;
+        saveTweetAndRetweetInfo.created_at= tweetUserDetail.created_at;
+        saveTweetAndRetweetInfo.default_profile= tweetUserDetail.default_profile;
+        saveTweetAndRetweetInfo.default_profile_image= tweetUserDetail.default_profile_image;
+        saveTweetAndRetweetInfo.description_tweet= tweetUserDetail.description_tweet;
+        saveTweetAndRetweetInfo.favourites_count= [NSString stringWithFormat:@"%@",tweetUserDetail.favourites_count];
+        saveTweetAndRetweetInfo.follow_request_sent= tweetUserDetail.follow_request_sent;
+        saveTweetAndRetweetInfo. followers_count= [NSString stringWithFormat:@"%@",tweetUserDetail.followers_count];
+        saveTweetAndRetweetInfo.following= tweetUserDetail.following;
+        saveTweetAndRetweetInfo.friends_count= [NSString stringWithFormat:@"%@",tweetUserDetail.friends_count];
+        saveTweetAndRetweetInfo.geo_enabled= tweetUserDetail.geo_enabled;
+        saveTweetAndRetweetInfo.userid= [NSString stringWithFormat:@"%@",tweetUserDetail.userid];
+        saveTweetAndRetweetInfo.userid_str= tweetUserDetail.userid_str;
+        saveTweetAndRetweetInfo.is_translation_enabled= tweetUserDetail.is_translation_enabled;
+        saveTweetAndRetweetInfo.is_translator= tweetUserDetail.is_translator;
+        saveTweetAndRetweetInfo.lang= tweetUserDetail.lang;
+        saveTweetAndRetweetInfo.listed_count= tweetUserDetail.listed_count;
+        saveTweetAndRetweetInfo.location= tweetUserDetail.location;
+        saveTweetAndRetweetInfo.name= tweetUserDetail.name;
+        saveTweetAndRetweetInfo.notifications= tweetUserDetail.notifications;
+        saveTweetAndRetweetInfo.profile_background_color= tweetUserDetail.profile_background_color;
+        saveTweetAndRetweetInfo.profile_background_image_url= tweetUserDetail.profile_background_image_url;
+        saveTweetAndRetweetInfo.profile_background_image_url_https= tweetUserDetail.profile_background_image_url_https;
+        saveTweetAndRetweetInfo.profile_background_tile= tweetUserDetail.profile_background_tile;
+        saveTweetAndRetweetInfo.profile_image_url= tweetUserDetail.profile_image_url;
+        saveTweetAndRetweetInfo.profile_image_url_https= tweetUserDetail.profile_image_url_https;
+        saveTweetAndRetweetInfo.profile_link_color= tweetUserDetail.profile_link_color;
+        saveTweetAndRetweetInfo.profile_sidebar_border_color= tweetUserDetail.profile_sidebar_border_color;
+        saveTweetAndRetweetInfo.profile_sidebar_fill_color= tweetUserDetail.profile_sidebar_fill_color;
+        saveTweetAndRetweetInfo.profile_text_color= tweetUserDetail.profile_text_color;
+        saveTweetAndRetweetInfo.profile_use_background_image= tweetUserDetail.profile_use_background_image;
+        saveTweetAndRetweetInfo.protected_user= tweetUserDetail.protected_user;
+        saveTweetAndRetweetInfo.screen_name= tweetUserDetail.screen_name;
+        saveTweetAndRetweetInfo.statuses_count= tweetUserDetail.statuses_count;
+        saveTweetAndRetweetInfo.time_zone= tweetUserDetail.time_zone;
+        saveTweetAndRetweetInfo.url= tweetUserDetail.url;
+        saveTweetAndRetweetInfo.utc_offset= tweetUserDetail.utc_offset;
+        saveTweetAndRetweetInfo. verified= tweetUserDetail.verified;
 
-        saveTweetDetail.tweetuserinfo = saveTweetUserDetail;
-        saveTweetUserDetail.generaltweetinfo = saveTweetDetail;
+        saveTweetDetail.tweetuserinfo = saveTweetAndRetweetInfo;
+        saveTweetAndRetweetInfo.generaltweetinfo = saveTweetDetail;
         
         NSError *error;
         if (![context save:&error]) {
@@ -229,10 +233,105 @@
                                               inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     NSLog(@"fetched objects %@",fetchedObjects);
    
+    
+}
+#pragma mark -
+#pragma mark - Saving Follower Details
+
+-(void)savingFollowerDeatails:(NSMutableArray *)lobjfollowerDetails
+{
+    
+    NSMutableArray *followers = [NSMutableArray array];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    for (CDTweetUserDetails *tweetUserDetail in lobjfollowerDetails) {
+        
+          CDSaveUserInfo *saveuserInfodetails =[NSEntityDescription insertNewObjectForEntityForName:@"UserInfo"
+                                                                           inManagedObjectContext:context];
+        
+        saveuserInfodetails.contributors_enabled = tweetUserDetail.contributors_enabled;
+        saveuserInfodetails.created_at= tweetUserDetail.created_at;
+        saveuserInfodetails.default_profile= tweetUserDetail.default_profile;
+        saveuserInfodetails.default_profile_image= tweetUserDetail.default_profile_image;
+        saveuserInfodetails.description_tweet= tweetUserDetail.description_tweet;
+        saveuserInfodetails.favourites_count= [NSString stringWithFormat:@"%@",tweetUserDetail.favourites_count];
+        saveuserInfodetails.follow_request_sent= tweetUserDetail.follow_request_sent;
+        saveuserInfodetails. followers_count= [NSString stringWithFormat:@"%@",tweetUserDetail.followers_count];
+        saveuserInfodetails.following= tweetUserDetail.following;
+        saveuserInfodetails.friends_count= [NSString stringWithFormat:@"%@",tweetUserDetail.friends_count];
+        saveuserInfodetails.geo_enabled= tweetUserDetail.geo_enabled;
+        saveuserInfodetails.userid= [NSString stringWithFormat:@"%@",tweetUserDetail.userid];
+        saveuserInfodetails.userid_str= tweetUserDetail.userid_str;
+        saveuserInfodetails.is_translator= tweetUserDetail.is_translator;
+        saveuserInfodetails.lang= tweetUserDetail.lang;
+        saveuserInfodetails.listed_count= tweetUserDetail.listed_count;
+        saveuserInfodetails.location= tweetUserDetail.location;
+        saveuserInfodetails.name= tweetUserDetail.name;
+        saveuserInfodetails.notifications= tweetUserDetail.notifications;
+        saveuserInfodetails.profile_background_color= tweetUserDetail.profile_background_color;
+        saveuserInfodetails.profile_background_image_url= tweetUserDetail.profile_background_image_url;
+        saveuserInfodetails.profile_background_image_url_https= tweetUserDetail.profile_background_image_url_https;
+        saveuserInfodetails.profile_background_tile= tweetUserDetail.profile_background_tile;
+        saveuserInfodetails.profile_image_url= tweetUserDetail.profile_image_url;
+        saveuserInfodetails.profile_image_url_https= tweetUserDetail.profile_image_url_https;
+        saveuserInfodetails.profile_link_color= tweetUserDetail.profile_link_color;
+        saveuserInfodetails.profile_sidebar_border_color= tweetUserDetail.profile_sidebar_border_color;
+        saveuserInfodetails.profile_sidebar_fill_color= tweetUserDetail.profile_sidebar_fill_color;
+        saveuserInfodetails.profile_text_color= tweetUserDetail.profile_text_color;
+        saveuserInfodetails.profile_use_background_image= tweetUserDetail.profile_use_background_image;
+        saveuserInfodetails.protected_user= tweetUserDetail.protected_user;
+        saveuserInfodetails.screen_name= tweetUserDetail.screen_name;
+        saveuserInfodetails.statuses_count= tweetUserDetail.statuses_count;
+        saveuserInfodetails.time_zone= tweetUserDetail.time_zone;
+        saveuserInfodetails.url= tweetUserDetail.url;
+        saveuserInfodetails.utc_offset= tweetUserDetail.utc_offset;
+        saveuserInfodetails. verified= tweetUserDetail.verified;
+        
+        [followers addObject:saveuserInfodetails];
+
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        
+    }
+    NSLog(@"followers %@",followers);
+    CDSaveFollowerDetails *saveFollowerDetails = [NSEntityDescription insertNewObjectForEntityForName:@"Followers" inManagedObjectContext:context];
+    saveFollowerDetails.userDetails = followers;
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    //For Checking Purpose whether data is saved or not
+    
+    NSError *error1;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Followers"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error1];
+    NSLog(@"fetched objects %@",fetchedObjects);
+    CDSaveFollowerDetails *follower = [fetchedObjects objectAtIndex:0];
+    NSLog(@"details %@",follower.userDetails);
+    
+    
+//    //For Checking Purpose whether data is saved or not
+//    
+//    NSEntityDescription *entity1 = [NSEntityDescription entityForName:@"UserInfo"
+//                                              inManagedObjectContext:context];
+//    NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] init];
+//
+//    [fetchRequest1 setEntity:entity1];
+//    
+//    NSArray *fetchedObjectsfromuserInfo = [context executeFetchRequest:fetchRequest1 error:&error];
+//    NSLog(@"fetchedObjectsfromuserInfo %@",fetchedObjectsfromuserInfo);
+
     
 }
 

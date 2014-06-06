@@ -18,8 +18,10 @@
     
 }
 @property (nonatomic,retain)  NSMutableArray *completeTweetDetails;
+@property (nonatomic,retain)  NSMutableDictionary *followersDetails;
 @property (nonatomic,retain) NSMutableArray *tweetDataToDatabase;
 @property (nonatomic,retain) NSMutableArray *tweetUserDataToDatabase;
+@property (nonatomic,retain) NSMutableArray *tweetUserfollowersDataToDatabase;
 
 @end
 @implementation CDWebEngine
@@ -43,9 +45,101 @@
    
         self.tweetDataToDatabase = [NSMutableArray array];
         self.tweetUserDataToDatabase = [NSMutableArray array];
+        self.tweetUserfollowersDataToDatabase = [NSMutableArray array];
     }
     return self;
 }
+
+#pragma mark-
+#pragma mark - Get Followers 
+
+-(void)getfollowersFromTwitter:(ACAccount *)lobjTwitterAccount
+{
+    twitterAccount = lobjTwitterAccount;
+    
+    NSURL *requestURL = [NSURL URLWithString:@"https://api.twitter.com/1.1/followers/list.json"];
+    
+    SLRequest *followersGetRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodGET URL:requestURL parameters:nil];
+    
+    followersGetRequest.account = lobjTwitterAccount;
+    
+    [followersGetRequest performRequestWithHandler:^(NSData *responseData,
+                                                     NSHTTPURLResponse *urlResponse, NSError *error)
+    {
+    
+        NSError *errorInJson;
+        
+        if (error == nil) {
+            
+            self.followersDetails = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&errorInJson];
+            NSLog(@"followers %@",self.followersDetails);
+            
+            NSArray *users = [self.followersDetails objectForKey:@"users"];
+            
+            NSLog(@"users %@",users);
+            
+            for (NSDictionary *article in users) {
+                
+                //Tweet User Details
+                CDTweetUserDetails *tweetUserDetail = [[CDTweetUserDetails alloc]init];
+                tweetUserDetail.contributors_enabled = (BOOL)[article valueForKeyPath:@"user.contributors_enabled"];
+                tweetUserDetail.created_at = [article valueForKeyPath:@"user.created_at"];
+                tweetUserDetail.default_profile = (BOOL)[article valueForKeyPath:@"user.default_profile"];
+                tweetUserDetail.default_profile_image = (BOOL)[article valueForKeyPath:@"user.default_profile_image"];
+                tweetUserDetail.description_tweet = [article valueForKeyPath:@"user.description_tweet"];
+                tweetUserDetail.favourites_count = [article valueForKeyPath:@"user.favourites_count"];
+                tweetUserDetail.follow_request_sent = (BOOL)[article valueForKeyPath:@"user.follow_request_sent"];
+                tweetUserDetail.followers_count = [article valueForKeyPath:@"user.followers_count"];
+                tweetUserDetail.friends_count = [article valueForKeyPath:@"user.friends_count"];
+                tweetUserDetail.following = (BOOL)[article valueForKeyPath:@"user.following"];
+                tweetUserDetail.geo_enabled = (BOOL)[article valueForKeyPath:@"user.geo_enabled"];
+                tweetUserDetail.userid = [article valueForKeyPath:@"user.userid"];
+                tweetUserDetail.userid_str = [article valueForKeyPath:@"user.userid_str"];
+                tweetUserDetail.is_translator = (BOOL)[article valueForKeyPath:@"user.is_translator"];
+                tweetUserDetail.lang = [article valueForKeyPath:@"user.lang"];
+                tweetUserDetail.listed_count = [NSString stringWithFormat:@"%@",[article valueForKeyPath:@"user.listed_count"]];
+                tweetUserDetail.location = [article valueForKeyPath:@"user.location"];
+                tweetUserDetail.name = [article valueForKeyPath:@"user.name"];
+                tweetUserDetail.notifications = (BOOL)[article valueForKeyPath:@"user.notifications"];
+                tweetUserDetail.profile_background_color = [article valueForKeyPath:@"user.profile_background_color"];
+                tweetUserDetail.profile_background_image_url = [article valueForKeyPath:@"user.profile_background_image_url"];
+                tweetUserDetail.location = [article valueForKeyPath:@"user.location"];
+                tweetUserDetail.name = [article valueForKeyPath:@"user.name"];
+                tweetUserDetail.notifications = (BOOL)[article valueForKeyPath:@"user.notifications"];
+                tweetUserDetail.profile_background_image_url = [article valueForKeyPath:@"user.profile_background_image_url"];
+                tweetUserDetail.profile_background_image_url_https = [article valueForKeyPath:@"user.profile_background_image_url_https"];
+                tweetUserDetail.profile_background_tile = (BOOL)[article valueForKeyPath:@"user.profile_background_tile"];
+                tweetUserDetail.profile_image_url = [article valueForKeyPath:@"user.profile_image_url"];
+                tweetUserDetail.profile_background_color = [article valueForKeyPath:@"user.profile_background_color"];
+                tweetUserDetail.profile_link_color = [article valueForKeyPath:@"user.profile_link_color"];
+                tweetUserDetail.profile_sidebar_border_color = [article valueForKeyPath:@"user.profile_sidebar_border_color"];
+                tweetUserDetail.profile_sidebar_fill_color = [article valueForKeyPath:@"user.profile_sidebar_fill_color"];
+                tweetUserDetail.profile_text_color = [article valueForKeyPath:@"user.profile_text_color"];
+                tweetUserDetail.profile_text_color = [article valueForKeyPath:@"user.profile_text_color"];
+                tweetUserDetail.profile_use_background_image = (BOOL)[article valueForKeyPath:@"user.profile_use_background_image"];
+                tweetUserDetail.protected_user = [article valueForKeyPath:@"user.protected_user"];
+                tweetUserDetail.screen_name = [article valueForKeyPath:@"user.screen_name"];
+                tweetUserDetail.statuses_count = [NSString stringWithFormat:@"%@",[article valueForKeyPath:@"user.statuses_count"]];
+                tweetUserDetail.time_zone = [article valueForKeyPath:@"user.time_zone"];
+                tweetUserDetail.url = [article valueForKeyPath:@"user.url"];
+                tweetUserDetail.utc_offset = [NSString stringWithFormat:@"%@",[article valueForKeyPath:@"user.utc_offset"]];
+                tweetUserDetail.verified = (BOOL)[article valueForKeyPath:@"user.verified"];
+                [self.tweetUserfollowersDataToDatabase addObject:tweetUserDetail];
+                
+            }
+            
+            [[CDDatabaseManager databaseManager]savingFollowerDeatails:self.tweetUserfollowersDataToDatabase];
+        }
+        
+      
+    
+    }];
+    
+    
+}
+
+#pragma mark -
+#pragma mark - Get Tweets And ReTweets
 
 -(void)getArticlesFromTwitter:(ACAccount *)lobjTwitterAccount;
 {
