@@ -236,7 +236,8 @@
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     NSLog(@"fetched objects %@",fetchedObjects);
    
-    
+    //This will remove all managed objects from context
+    [self.managedObjectContext reset];
 }
 #pragma mark -
 #pragma mark - Saving Follower Details
@@ -322,8 +323,8 @@
     CDSaveFollowerDetails *follower = [fetchedObjects objectAtIndex:0];
     NSLog(@"details %@",follower.userDetails);
     
-    
-
+    //This will remove all managed objects from context
+    [self.managedObjectContext reset];
     
 }
 
