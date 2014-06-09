@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Followers" representedClassName="CDSaveFollowerDetails" syncable="YES"/>
+    <entity name="Followers" representedClassName="CDSaveFollowerDetails" syncable="YES">
+        <relationship name="userDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="followers" inverseEntity="UserInfo" syncable="YES"/>
+    </entity>
     <entity name="TweetAndReTweetUserInfo" representedClassName="CDSaveTweetAndReTweetInfo" parentEntity="UserInfo" syncable="YES">
         <attribute name="is_translation_enabled" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="generaltweetinfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TweetInfo" inverseName="tweetuserinfo" inverseEntity="TweetInfo" syncable="YES"/>
@@ -67,11 +69,12 @@
         <attribute name="userid_str" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="utc_offset" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="verified" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="followers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Followers" inverseName="userDetails" inverseEntity="Followers" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Followers" positionX="-1836" positionY="-1195" width="128" height="43"/>
         <element name="TweetAndReTweetUserInfo" positionX="-1845" positionY="-1431" width="128" height="73"/>
         <element name="TweetInfo" positionX="-2106" positionY="-1512" width="128" height="373"/>
-        <element name="UserInfo" positionX="-1521" positionY="-1603" width="128" height="598"/>
+        <element name="UserInfo" positionX="-1620" positionY="-1593" width="128" height="613"/>
+        <element name="Followers" positionX="-1845" positionY="-1251" width="128" height="58"/>
     </elements>
 </model>

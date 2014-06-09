@@ -244,9 +244,11 @@
 -(void)savingFollowerDeatails:(NSMutableArray *)lobjfollowerDetails
 {
     
+    NSManagedObjectContext *context = [self managedObjectContext];
+
+     CDSaveFollowerDetails *saveFollowerDetails = [NSEntityDescription insertNewObjectForEntityForName:@"Followers" inManagedObjectContext:context];
     NSMutableArray *followers = [NSMutableArray array];
     
-    NSManagedObjectContext *context = [self managedObjectContext];
     
     for (CDTweetUserDetails *tweetUserDetail in lobjfollowerDetails) {
         
@@ -291,6 +293,8 @@
         saveuserInfodetails.utc_offset= tweetUserDetail.utc_offset;
         saveuserInfodetails. verified= tweetUserDetail.verified;
         
+        [saveFollowerDetails adduserDetailsObject:saveuserInfodetails];
+
         [followers addObject:saveuserInfodetails];
 
         NSError *error;
@@ -300,12 +304,10 @@
         
     }
     NSLog(@"followers %@",followers);
-    CDSaveFollowerDetails *saveFollowerDetails = [NSEntityDescription insertNewObjectForEntityForName:@"Followers" inManagedObjectContext:context];
-    saveFollowerDetails.userDetails = followers;
-    
+    [saveFollowerDetails setUserDetails:[NSSet setWithArray:followers]];
     NSError *error;
     if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+      NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     //For Checking Purpose whether data is saved or not
     
@@ -321,16 +323,6 @@
     NSLog(@"details %@",follower.userDetails);
     
     
-//    //For Checking Purpose whether data is saved or not
-//    
-//    NSEntityDescription *entity1 = [NSEntityDescription entityForName:@"UserInfo"
-//                                              inManagedObjectContext:context];
-//    NSFetchRequest *fetchRequest1 = [[NSFetchRequest alloc] init];
-//
-//    [fetchRequest1 setEntity:entity1];
-//    
-//    NSArray *fetchedObjectsfromuserInfo = [context executeFetchRequest:fetchRequest1 error:&error];
-//    NSLog(@"fetchedObjectsfromuserInfo %@",fetchedObjectsfromuserInfo);
 
     
 }

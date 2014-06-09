@@ -11,6 +11,15 @@
 
 @interface CDSaveFollowerDetails : NSManagedObject
 
-@property (nonatomic,retain) NSMutableArray *userDetails;
+@property (nonatomic,retain) NSSet *userDetails;
+
+@end
+
+@interface CDSaveFollowerDetails (CoreDataGeneratedAccessors)
+
+- (void)adduserDetailsObject:(CDSaveUserInfo *)value;
+- (void)removeuserDetailsObject:(CDSaveUserInfo *)value;
+- (void)addadduserDetails:(NSSet *)values;
+- (void)removeadduserDetails:(NSSet *)values;
 
 @end
