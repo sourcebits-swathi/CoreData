@@ -11,6 +11,9 @@
 
 @interface CDSaveFollowerDetails : NSManagedObject
 
+
+
+
 @property (nonatomic,retain) NSSet *userDetails;
 
 @end
