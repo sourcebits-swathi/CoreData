@@ -11,4 +11,5 @@
 @implementation CDSaveFollowerDetails
 
 @synthesize userDetails;
+
 @end
